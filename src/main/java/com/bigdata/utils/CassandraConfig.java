@@ -13,7 +13,7 @@ import org.springframework.data.cassandra.mapping.BasicCassandraMappingContext;
 import org.springframework.data.cassandra.mapping.CassandraMappingContext;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
-//@Configuration
+@Configuration
 @EnableCassandraRepositories(basePackages = "com.bigdata")
 public class CassandraConfig {
 	
@@ -23,7 +23,7 @@ public class CassandraConfig {
         return "test_validated";
     }
  
-    @Bean
+   @Bean
     public CassandraClusterFactoryBean cluster() {
         CassandraClusterFactoryBean cluster = 
           new CassandraClusterFactoryBean();

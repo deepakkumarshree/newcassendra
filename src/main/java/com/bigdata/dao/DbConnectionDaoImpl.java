@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository;
 import com.bigdata.model.Address;
 import com.bigdata.model.Department;
 import com.bigdata.model.Employee;
-import com.datastax.driver.core.Cluster;
+/*import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.ProtocolVersion;
 import com.datastax.driver.core.Session;
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableSet;*/
 
 
 
@@ -25,7 +25,7 @@ public class DbConnectionDaoImpl implements DbConnectionDao {
 	EmployeeRepository employeeRepository;*/
 	//@Autowired
    // private CassandraOperations cassandraTemplate;
-	public Session getSession() {
+	//public Session getSession() {
 	/*	Cluster cluster = Cluster.builder().withPort(9042).withProtocolVersion(ProtocolVersion.V3)
 				.withCredentials("cassandra", "cassandra")
 				.addContactPoint("13.56.105.107").build();
@@ -36,10 +36,10 @@ public class DbConnectionDaoImpl implements DbConnectionDao {
 		  for (Row row : results) {
 		  System.out.println("data==> "+row.getString("name"));*/
 		 
-
+/*
 		return null;
 
-	}
+	}*/
 
 	@Override
 	public Employee add() {
