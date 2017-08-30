@@ -21,15 +21,15 @@ import com.google.common.collect.ImmutableSet;
 
 @Repository
 public class DbConnectionDaoImpl implements DbConnectionDao {
-	@Autowired
-	EmployeeRepository employeeRepository;
+	/*@Autowired
+	EmployeeRepository employeeRepository;*/
 	//@Autowired
    // private CassandraOperations cassandraTemplate;
 	public Session getSession() {
-		Cluster cluster = Cluster.builder().withPort(9042).withProtocolVersion(ProtocolVersion.V3)
+	/*	Cluster cluster = Cluster.builder().withPort(9042).withProtocolVersion(ProtocolVersion.V3)
 				.withCredentials("cassandra", "cassandra")
 				.addContactPoint("13.56.105.107").build();
-		Session session = cluster.connect();
+		Session session = cluster.connect();*/
 		
 	/*	  System.out.println("Cluster and Session created with SSL"); 
 		  ResultSet	  results = session.execute("SELECT * from test_validated.employee ");
@@ -37,7 +37,7 @@ public class DbConnectionDaoImpl implements DbConnectionDao {
 		  System.out.println("data==> "+row.getString("name"));*/
 		 
 
-		return session;
+		return null;
 
 	}
 
@@ -54,10 +54,10 @@ public class DbConnectionDaoImpl implements DbConnectionDao {
 		
 		//Employee(String name, boolean manager, String message, Department dept, List<Address> addressList,
 		//Map<String, List<Integer>> employeeLeavesMap, boolean deductSalary)
-		Employee employee=new Employee("raj",false,"msg",new Department("dev"),addressList,leave,false);
-		employeeRepository.save(ImmutableSet.of(employee));
+		//Employee employee=new Employee("raj",false,"msg",new Department("dev"),addressList,leave,false);
+		//employeeRepository.save(ImmutableSet.of(employee));
 	//	cassandraTemplate.insert(employee);
-		System.out.println(employee);
+	//	System.out.println(employee);
 		return null;//myCassandraTemplate.create(employee, Employee.class);
    }
 		

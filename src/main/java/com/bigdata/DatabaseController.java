@@ -22,7 +22,7 @@ import com.datastax.driver.core.Session;
 
 
 @RestController
-
+@RequestMapping("/cassendraCURDApi")
 public class DatabaseController {
 	@Autowired
 	dbConnectionService dbConnectionService;
@@ -32,7 +32,7 @@ public class DatabaseController {
 	@RequestMapping("/")
 	public String hello() {
 		System.out.println("Welcome to Cassandra DataBase Connection ---->");
-		Cluster cluster = Cluster.builder().withPort(9042).withProtocolVersion(ProtocolVersion.V3)
+		/*Cluster cluster = Cluster.builder().withPort(9042).withProtocolVersion(ProtocolVersion.V3)
 				.withCredentials("cassandra", "cassandra")
 				.addContactPoint("13.56.105.107").build();
 		Session session = cluster.connect("test_validated");
@@ -43,13 +43,14 @@ public class DatabaseController {
 		  for (Row row : results) {
 		  System.out.println("data==> "+row.getString("name"));
 		  }
-
+*/
 		return "nextPage";
 	}
 
 	@RequestMapping("/add")
 	public String add() {
-		//dbConnectionService.add();
+		  System.out.println("data==> Add");
+		/*//dbConnectionService.add();
 		List<Address> addressList=new ArrayList<Address>();
 		int phone=78585235;
 		addressList.add(new Address("om nagar",phone));
@@ -62,21 +63,20 @@ public class DatabaseController {
 		//Map<String, List<Integer>> employeeLeavesMap, boolean deductSalary)
 		Employee employee=new Employee("raj",false,"msg",new Department("dev"),addressList,leave,false);
 		//employeeRepository.save(ImmutableSet.of(employee));
-		
+		*/
 		
 		return "add";
 	}
 
 	@RequestMapping("/update")
 	public String update() {
-		dbConnectionService.update();
-		;
-		return "add";
+		
+		return "update";
 	}
 
 	@RequestMapping("/delete")
 	public String delete() {
-		dbConnectionService.delete();
-		return "add";
+		//dbConnectionService.delete();
+		return "delete";
 	}
 }
