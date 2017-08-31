@@ -1,16 +1,19 @@
 package com.bigdata.model;
 
-import java.io.Serializable;
-
-public class Address implements Serializable{
+import com.datastax.driver.mapping.annotations.Field;
+import com.datastax.driver.mapping.annotations.UDT;
+@UDT(keyspace="test_validated", name="address")
+public class Address{
 	
 	public Address(String street, int phone) {
 		
 		this.street = street;
 		this.phone = phone;
 	}
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
+	@Field
 	private String street;
+	@Field
 	private int phone;
 	public String getStreet() {
 		return street;

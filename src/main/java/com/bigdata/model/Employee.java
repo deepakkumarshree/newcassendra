@@ -6,25 +6,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.datastax.driver.mapping.annotations.Column;
-import com.datastax.driver.mapping.annotations.PartitionKey;
-import com.datastax.driver.mapping.annotations.Table;
+import org.springframework.data.cassandra.mapping.CassandraType;
+import org.springframework.data.cassandra.mapping.Column;
+import org.springframework.data.cassandra.mapping.PrimaryKey;
+import org.springframework.data.cassandra.mapping.Table;
 
+import com.datastax.driver.core.DataType;
+import com.datastax.driver.core.DataType.Name;
 
-
-@Table(name="employee")
+@Table(value="employee")
 public class Employee implements Serializable{
 	private static final long serialVersionUID = 1L;
-	@PartitionKey
-    private String name;
-	private boolean manager;
+	@PrimaryKey	
+    private String name;	
+	private boolean manager;	
 	private String message;
-	private Map<String,String> dept;
-	@Column(name="addressList")
-	private List <Map<String,Object>> addressList = new ArrayList<Map<String,Object>>();
-	@Column(name="employeeLeavesMap")
-	private Map<String,Integer> employeeLeavesMap;  
-	@Column(name="deductSalary")
+	private Department dept;
+	@Column(value="addressList")
+	@CassandraType(type = Name.LIST , typeArguments= DataType.Name.UDT,userTypeName ="com.bigdata.model.Address")
+	private List <Address> addressList = new ArrayList<Address>();
+	@Column(value="employeeLeavesMap")
+	private Map<String, List<Employeeleavecnt>> employeeLeavesMap;  
+	@Column(value="deductSalary")
 	private boolean deductSalary;
 	public String getName() {
 		return name;
@@ -49,10 +52,23 @@ public class Employee implements Serializable{
 	
 	
 	
-	public Map<String, Integer> getEmployeeLeavesMap() {
+	
+	public Department getDept() {
+		return dept;
+	}
+	public void setDept(Department dept) {
+		this.dept = dept;
+	}
+	public List<Address> getAddressList() {
+		return addressList;
+	}
+	public void setAddressList(List<Address> addressList) {
+		this.addressList = addressList;
+	}
+	public Map<String, List<Employeeleavecnt>> getEmployeeLeavesMap() {
 		return employeeLeavesMap;
 	}
-	public void setEmployeeLeavesMap(Map<String, Integer> employeeLeavesMap) {
+	public void setEmployeeLeavesMap(Map<String, List<Employeeleavecnt>> employeeLeavesMap) {
 		this.employeeLeavesMap = employeeLeavesMap;
 	}
 	public boolean isDeductSalary() {
@@ -61,8 +77,8 @@ public class Employee implements Serializable{
 	public void setDeductSalary(boolean deductSalary) {
 		this.deductSalary = deductSalary;
 	}
-	public Employee(String name, boolean manager, String message, Map<String,String> dept, List<Map<String,Object>> addressList,
-			Map<String,Integer> employeeLeavesMap, boolean deductSalary) {
+	public Employee(String name, boolean manager, String message, Department dept, List <Address> addressList,
+			Map<String, List<Employeeleavecnt>> employeeLeavesMap, boolean deductSalary) {
 		super();
 		this.name = name;
 		this.manager = manager;
@@ -72,17 +88,12 @@ public class Employee implements Serializable{
 		this.employeeLeavesMap = employeeLeavesMap;
 		this.deductSalary = deductSalary;
 	}
-	public Map<String,String> getDept() {
-		return dept;
-	}
-	public void setDept(Map<String,String> dept) {
-		this.dept = dept;
-	}
-	public List<Map<String, Object>> getAddressList() {
-		return addressList;
-	}
-	public void setAddressList(List<Map<String, Object>> addressList) {
-		this.addressList = addressList;
+	
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", manager=" + manager + ", message=" + message + ", dept=" + dept
+				+ ", addressList=" + addressList + ", employeeLeavesMap=" + employeeLeavesMap + ", deductSalary="
+				+ deductSalary + "]";
 	}
 	
 	

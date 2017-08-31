@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bigdata.dao.EmployeeRepository;
+import com.bigdata.model.Address;
 import com.bigdata.model.Employee;
 import com.bigdata.service.dbConnectionService;
 import com.datastax.driver.core.Cluster;
@@ -17,6 +18,8 @@ import com.datastax.driver.core.ProtocolVersion;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
+import com.datastax.driver.core.UDTValue;
+
 
 
 
@@ -31,7 +34,7 @@ public class DatabaseController {
 	@RequestMapping("/")
 	public String hello() {
 		System.out.println("Welcome to Cassandra DataBase Connection ---->");
-		Cluster cluster = Cluster.builder().withPort(9042).withProtocolVersion(ProtocolVersion.V3)
+		/*Cluster cluster = Cluster.builder().withPort(9042).withProtocolVersion(ProtocolVersion.V3)
 				.withCredentials("cassandra", "cassandra")
 				.addContactPoint("13.56.105.107").build();
 		Session session = cluster.connect("test_validated");
@@ -39,9 +42,37 @@ public class DatabaseController {
 		  System.out.println("Cluster and Session created with SSL"); 
 		  ResultSet
 		  results = session.execute("SELECT * from test_validated.employee ");
-		  for (Row row : results) {
-		  System.out.println("data==> "+row.getString("name"));
-		  }
+		//  TypeCodec<Department>   mapper = new MappingManager(session).udtCodec(Department.class);
+		  for (Row row : results) 
+		  {
+			  System.out.println("data==> "+row.getString("name"));
+		  	  UDTValue dept = row.getUDTValue("dept");
+		  	  List addresslist = row.getList("addressList",Address.class);
+		  	  //Map employeeLeavesMap = row.getMap("employeeLeavesMap", String.class, List.class);
+		  	  boolean deductSalary = row.getBool("deductSalary");
+		  	  boolean manager = row.getBool("manager");
+			  String message = row.getString("message");
+				System.out.println(deductSalary);
+			  	System.out.println(manager);
+			  	System.out.println(message);			
+			  	System.out.println(dept);
+			//  	System.out.println(addresslist);
+			  	//System.out.println(employeeLeavesMap);
+			  
+		  	//  mapper.parse(dept);
+		  		
+		  		
+			
+		  
+		  
+		  }*/
+		
+		List <Employee> emplist=(List <Employee>)employeeRepository.findAll();
+		for(Employee emp:emplist)
+		{
+			System.out.println("deepak");
+		}
+		
 
 		return "nextPage";
 	}
@@ -49,7 +80,20 @@ public class DatabaseController {
 	@RequestMapping("/add")
 	public String add() {
 		//dbConnectionService.add();
+		/*int phone=78585235;
+		List<Address> addressList=new ArrayList<Address>();
+		Address address = new Address("om nagar",phone);
+		addressList.add(address);
+	
+		Department dep = new Department("ItdfgDept");
+		List<Employeeleavecnt> employeeleavecntList = new ArrayList<Employeeleavecnt>();
+		Employeeleavecnt employeeleavecnt = new Employeeleavecnt();
+		employeeleavecnt.setCnt(10);
+		employeeleavecntList.add(employeeleavecnt);
+		Map<String,List<Employeeleavecnt>> leavecnt=new HashMap<String,List<Employeeleavecnt>>();
+		leavecnt.put("leave", employeeleavecntList);*/
 		List<Map<String, Object>> addressList=new ArrayList<Map<String, Object>>();
+	
 		
 		int phone=78585235;
 		Map<String, Object> addmap=new HashMap<String, Object>();
@@ -61,13 +105,23 @@ public class DatabaseController {
 		leavecnt.put("cnt", new Integer(10));
 		Map<String,String> dep=new HashMap<String,String>();
 		dep.put("name","ItdfgDept");
-		
+	
 		//Employee(String name, boolean manager, String message, Department dept, List<Address> addressList,
 		//Map<String, List<Integer>> employeeLeavesMap, boolean deductSalary)
 		//Employee employee=new Employee("raj",false,"msg",new Department("dev"),addressList,leave,false);
-		Employee employee=new Employee("raj",false,"msg",dep,addressList,leavecnt,false);
-		employeeRepository.save(employee);
+		try{
+		/*MappingManager manager = new MappingManager(new CassandraConfig().cassandraTemplate().getSession());
+		Mapper<Employee> mapper = manager.mapper(Employee.class);
+		*/
 		
+	//	Employee employee=new Employee("raj",false,"msg",dep,null,leavecnt,false);
+		//mapper.save(employee);
+	//	employeeRepository.save(employee);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
 		return "add";
 	}

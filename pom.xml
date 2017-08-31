@@ -51,9 +51,10 @@
 			<artifactId>cassandra-driver-extras</artifactId>
 			<version>3.3.0</version>
 		</dependency>
-		<dependency> <groupId>org.springframework.data</groupId> 
-		<artifactId>spring-data-cassandra</artifactId> 
-			</dependency> 
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-cassandra</artifactId>
+		</dependency>
 
 	</dependencies>
 

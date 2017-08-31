@@ -1,10 +1,11 @@
 package com.bigdata.model;
 
 
-import java.io.Serializable;
-
-public class Department  implements Serializable{
-	private static final long serialVersionUID = 1L;
+import com.datastax.driver.mapping.annotations.Field;
+import com.datastax.driver.mapping.annotations.UDT;
+@UDT(keyspace="test_validated",name="dept")
+public class Department{
+	@Field
 	private String name;
 	public String getName() {
 		return name;
