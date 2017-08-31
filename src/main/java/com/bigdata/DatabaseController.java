@@ -67,10 +67,11 @@ public class DatabaseController {
 		  
 		  }*/
 		
-		List <Employee> emplist=(List <Employee>)employeeRepository.findAll();
+		List <Employee> emplist=(List<Employee>)employeeRepository.findAll();
 		for(Employee emp:emplist)
 		{
 			System.out.println("deepak");
+			System.out.println(emp);
 		}
 		
 
@@ -117,6 +118,8 @@ public class DatabaseController {
 	//	Employee employee=new Employee("raj",false,"msg",dep,null,leavecnt,false);
 		//mapper.save(employee);
 	//	employeeRepository.save(employee);
+		Employee employee=new Employee("raj",false,"msg",false);		
+		employeeRepository.save(employee);
 		}
 		catch(Exception e)
 		{

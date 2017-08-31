@@ -1,6 +1,5 @@
 package com.bigdata.model;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,44 +18,42 @@ public class Employee implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@PrimaryKey	
     private String name;	
-	private boolean manager;	
+	private Boolean manager=false;	
 	private String message;
-	private Department dept;
+	/*private Department dept;
 	@Column(value="addressList")
 	@CassandraType(type = Name.LIST , typeArguments= DataType.Name.UDT,userTypeName ="com.bigdata.model.Address")
 	private List <Address> addressList = new ArrayList<Address>();
 	@Column(value="employeeLeavesMap")
-	private Map<String, List<Employeeleavecnt>> employeeLeavesMap;  
-	@Column(value="deductSalary")
-	private boolean deductSalary;
+	private Map<String, List<Employeeleavecnt>> employeeLeavesMap;  */
+	@Column(value="deductSalary",forceQuote=true)
+	private Boolean deductSalary;
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isManager() {
+	/*public boolean isManager() {
 		return manager;
 	}
 	public void setManager(boolean manager) {
+		
 		this.manager = manager;
-	}
+	}*/
 	public String getMessage() {
 		return message;
 	}
 	public void setMessage(String message) {
+		if(message==null)message="";
 		this.message = message;
 	}
 	
-	
-	
-	
-	
-	
-	public Department getDept() {
+
+	/*public Department getDept() {
 		return dept;
-	}
-	public void setDept(Department dept) {
+	}*/
+/*	public void setDept(Department dept) {
 		this.dept = dept;
 	}
 	public List<Address> getAddressList() {
@@ -70,14 +67,14 @@ public class Employee implements Serializable{
 	}
 	public void setEmployeeLeavesMap(Map<String, List<Employeeleavecnt>> employeeLeavesMap) {
 		this.employeeLeavesMap = employeeLeavesMap;
-	}
-	public boolean isDeductSalary() {
+	}*/
+/*	public boolean isDeductSalary() {
 		return deductSalary;
 	}
 	public void setDeductSalary(boolean deductSalary) {
 		this.deductSalary = deductSalary;
-	}
-	public Employee(String name, boolean manager, String message, Department dept, List <Address> addressList,
+	}*/
+	/*public Employee(String name, boolean manager, String message, Department dept, List <Address> addressList,
 			Map<String, List<Employeeleavecnt>> employeeLeavesMap, boolean deductSalary) {
 		super();
 		this.name = name;
@@ -87,13 +84,30 @@ public class Employee implements Serializable{
 		this.addressList = addressList;
 		this.employeeLeavesMap = employeeLeavesMap;
 		this.deductSalary = deductSalary;
+	}*/
+	public Boolean getDeductSalary() {
+		return deductSalary;
 	}
-	
+	public void setDeductSalary(Boolean deductSalary) {
+		this.deductSalary = deductSalary;
+	}
+	public Boolean getManager() {
+		return manager;
+	}
+	public void setManager(Boolean manager) {
+		this.manager = manager;
+	}
 	@Override
 	public String toString() {
-		return "Employee [name=" + name + ", manager=" + manager + ", message=" + message + ", dept=" + dept
-				+ ", addressList=" + addressList + ", employeeLeavesMap=" + employeeLeavesMap + ", deductSalary="
+		return "Employee [name=" + name + ", manager=" + manager + ", message=" + message + ", deductSalary="
 				+ deductSalary + "]";
+	}
+	public Employee(String name, Boolean manager, String message, Boolean deductSalary) {
+		super();
+		this.name = name;
+		this.manager = manager;
+		this.message = message;
+		this.deductSalary = deductSalary;
 	}
 	
 	
