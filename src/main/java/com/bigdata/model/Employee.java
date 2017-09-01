@@ -2,6 +2,7 @@ package com.bigdata.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,8 +21,11 @@ public class Employee implements Serializable{
     private String name;	
 	private Boolean manager=false;	
 	private String message;
-	/*private Department dept;
-	@Column(value="addressList")
+	//@CassandraType(type = Name.UDT)
+	//private Department dept;
+	//@CassandraType(type = Name.MAP)	
+	//private Map<String, String> dept=new HashMap<String, String>(); 
+	/*@Column(value="addressList")
 	@CassandraType(type = Name.LIST , typeArguments= DataType.Name.UDT,userTypeName ="com.bigdata.model.Address")
 	private List <Address> addressList = new ArrayList<Address>();
 	@Column(value="employeeLeavesMap")
@@ -97,11 +101,12 @@ public class Employee implements Serializable{
 	public void setManager(Boolean manager) {
 		this.manager = manager;
 	}
-	@Override
-	public String toString() {
-		return "Employee [name=" + name + ", manager=" + manager + ", message=" + message + ", deductSalary="
-				+ deductSalary + "]";
+	/*public Map getDep() {
+		return dept;
 	}
+	public void setDep(Map dept) {
+		this.dept = dept;
+	}*/
 	public Employee(String name, Boolean manager, String message, Boolean deductSalary) {
 		super();
 		this.name = name;
@@ -109,6 +114,14 @@ public class Employee implements Serializable{
 		this.message = message;
 		this.deductSalary = deductSalary;
 	}
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", manager=" + manager + ", message=" + message + ", deductSalary="
+				+ deductSalary + "]";
+	}
+	
+	
+	
 	
 	
 }

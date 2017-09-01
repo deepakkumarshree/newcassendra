@@ -10,15 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bigdata.dao.EmployeeRepository;
-import com.bigdata.model.Address;
+import com.bigdata.model.Department;
 import com.bigdata.model.Employee;
 import com.bigdata.service.dbConnectionService;
-import com.datastax.driver.core.Cluster;
-import com.datastax.driver.core.ProtocolVersion;
-import com.datastax.driver.core.ResultSet;
-import com.datastax.driver.core.Row;
-import com.datastax.driver.core.Session;
-import com.datastax.driver.core.UDTValue;
 
 
 
@@ -86,7 +80,7 @@ public class DatabaseController {
 		Address address = new Address("om nagar",phone);
 		addressList.add(address);
 	
-		Department dep = new Department("ItdfgDept");
+	
 		List<Employeeleavecnt> employeeleavecntList = new ArrayList<Employeeleavecnt>();
 		Employeeleavecnt employeeleavecnt = new Employeeleavecnt();
 		employeeleavecnt.setCnt(10);
@@ -95,7 +89,7 @@ public class DatabaseController {
 		leavecnt.put("leave", employeeleavecntList);*/
 		List<Map<String, Object>> addressList=new ArrayList<Map<String, Object>>();
 	
-		
+		//Department dep = new Department("ItdfgDept");
 		int phone=78585235;
 		Map<String, Object> addmap=new HashMap<String, Object>();
 		addmap.put("street", "om nagar");
@@ -118,7 +112,7 @@ public class DatabaseController {
 	//	Employee employee=new Employee("raj",false,"msg",dep,null,leavecnt,false);
 		//mapper.save(employee);
 	//	employeeRepository.save(employee);
-		Employee employee=new Employee("raj",false,"msg",false);		
+		Employee employee=new Employee("raj123",false,"msg",false);		
 		employeeRepository.save(employee);
 		}
 		catch(Exception e)
