@@ -11,6 +11,7 @@ import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.mapping.BasicCassandraMappingContext;
 import org.springframework.data.cassandra.mapping.CassandraMappingContext;
+import org.springframework.data.cassandra.mapping.SimpleUserTypeResolver;
 import org.springframework.data.cassandra.repository.config.EnableCassandraRepositories;
 
 @Configuration
@@ -54,7 +55,10 @@ public class CassandraConfig {
     }
     @Bean
     public CassandraMappingContext mappingContext() {
-        return new BasicCassandraMappingContext();
+    	BasicCassandraMappingContext mappingContext = new BasicCassandraMappingContext(); 
+        mappingContext.setUserTypeResolver(new 
+        SimpleUserTypeResolver(cluster().getObject(), "test_validated")); 
+        return mappingContext; 
     }
     @Bean
     public CassandraOperations cassandraTemplate() throws Exception {

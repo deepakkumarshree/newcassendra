@@ -36,7 +36,7 @@
 			</exclusions>
 		</dependency>
 		<!-- Cassendra -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.datastax.cassandra</groupId>
 			<artifactId>cassandra-driver-core</artifactId>
 			<version>3.3.0</version>
@@ -50,7 +50,7 @@
 			<groupId>com.datastax.cassandra</groupId>
 			<artifactId>cassandra-driver-extras</artifactId>
 			<version>3.3.0</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-cassandra</artifactId>

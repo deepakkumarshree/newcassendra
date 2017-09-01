@@ -20,16 +20,17 @@ public class Employee implements Serializable{
 	@PrimaryKey	
     private String name;	
 	private Boolean manager=false;	
-	private String message;
-	//@CassandraType(type = Name.UDT)
-	//private Department dept;
-	//@CassandraType(type = Name.MAP)	
-	//private Map<String, String> dept=new HashMap<String, String>(); 
-	/*@Column(value="addressList")
-	@CassandraType(type = Name.LIST , typeArguments= DataType.Name.UDT,userTypeName ="com.bigdata.model.Address")
+	private String message;	
+	@CassandraType(type = DataType.Name.UDT,userTypeName="dept")
+	private Department dept=new Department();		
+	@CassandraType(type = DataType.Name.UDT,userTypeName="address")
+	@Column(value="addressList",forceQuote=true)
 	private List <Address> addressList = new ArrayList<Address>();
-	@Column(value="employeeLeavesMap")
-	private Map<String, List<Employeeleavecnt>> employeeLeavesMap;  */
+	//@CassandraType(type = DataType.Name.UDT,userTypeName="employeeleavecnt")
+	//private Map<String, List<Employeeleavecnt>> employeeLeavesMap;  
+	/*@CassandraType(type = DataType.Name.MAP)
+	private Map<String, List<Integer>> employeeLeavesMap; */
+	
 	@Column(value="deductSalary",forceQuote=true)
 	private Boolean deductSalary;
 	public String getName() {
@@ -38,13 +39,7 @@ public class Employee implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	/*public boolean isManager() {
-		return manager;
-	}
-	public void setManager(boolean manager) {
-		
-		this.manager = manager;
-	}*/
+	
 	public String getMessage() {
 		return message;
 	}
@@ -52,43 +47,6 @@ public class Employee implements Serializable{
 		if(message==null)message="";
 		this.message = message;
 	}
-	
-
-	/*public Department getDept() {
-		return dept;
-	}*/
-/*	public void setDept(Department dept) {
-		this.dept = dept;
-	}
-	public List<Address> getAddressList() {
-		return addressList;
-	}
-	public void setAddressList(List<Address> addressList) {
-		this.addressList = addressList;
-	}
-	public Map<String, List<Employeeleavecnt>> getEmployeeLeavesMap() {
-		return employeeLeavesMap;
-	}
-	public void setEmployeeLeavesMap(Map<String, List<Employeeleavecnt>> employeeLeavesMap) {
-		this.employeeLeavesMap = employeeLeavesMap;
-	}*/
-/*	public boolean isDeductSalary() {
-		return deductSalary;
-	}
-	public void setDeductSalary(boolean deductSalary) {
-		this.deductSalary = deductSalary;
-	}*/
-	/*public Employee(String name, boolean manager, String message, Department dept, List <Address> addressList,
-			Map<String, List<Employeeleavecnt>> employeeLeavesMap, boolean deductSalary) {
-		super();
-		this.name = name;
-		this.manager = manager;
-		this.message = message;
-		this.dept = dept;
-		this.addressList = addressList;
-		this.employeeLeavesMap = employeeLeavesMap;
-		this.deductSalary = deductSalary;
-	}*/
 	public Boolean getDeductSalary() {
 		return deductSalary;
 	}
@@ -101,24 +59,37 @@ public class Employee implements Serializable{
 	public void setManager(Boolean manager) {
 		this.manager = manager;
 	}
-	/*public Map getDep() {
+	
+	public Department getDept() {
 		return dept;
 	}
-	public void setDep(Map dept) {
+	public void setDept(Department dept) {
 		this.dept = dept;
-	}*/
-	public Employee(String name, Boolean manager, String message, Boolean deductSalary) {
+	}
+	public List<Address> getAddressList() {
+		return addressList;
+	}
+	public void setAddressList(List<Address> addressList) {
+		this.addressList = addressList;
+	}
+	@Override
+	public String toString() {
+		return "Employee [name=" + name + ", manager=" + manager + ", message=" + message + ", dept=" + dept
+				+ ", addressList=" + addressList + ", deductSalary=" + deductSalary + "]";
+	}
+	public Employee(String name, Boolean manager, String message, Department dept, List<Address> addressList,
+			Boolean deductSalary) {
 		super();
 		this.name = name;
 		this.manager = manager;
 		this.message = message;
+		this.dept = dept;
+		this.addressList = addressList;
 		this.deductSalary = deductSalary;
 	}
-	@Override
-	public String toString() {
-		return "Employee [name=" + name + ", manager=" + manager + ", message=" + message + ", deductSalary="
-				+ deductSalary + "]";
-	}
+
+	
+
 	
 	
 	
