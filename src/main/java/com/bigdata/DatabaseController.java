@@ -59,7 +59,7 @@ public class DatabaseController {
 	
 		try{
 		
-		Employee employee=new Employee("kundan",false,"msg",department,addressList,false);		
+		Employee employee=new Employee("kundan123",false,"msg",department,addressList,false);		
 		employeeRepository.save(employee);
 		}
 		catch(Exception e)
@@ -72,13 +72,61 @@ public class DatabaseController {
 
 	@RequestMapping("/update")
 	public String update() {
+		int phone=78585235;
+		List<Address> addressList=new ArrayList<Address>();
+		Address address = new Address("om nagar",phone);
+		addressList.add(address);
+		Department department=new Department("ItdfgDept");
 		
+	
+	
+		/*List<Employeeleavecnt> employeeleavecntList = new ArrayList<Employeeleavecnt>();
+		Employeeleavecnt employeeleavecnt = new Employeeleavecnt();
+		employeeleavecnt.setCnt(10);
+		employeeleavecntList.add(employeeleavecnt);
+		Map<String,List<Employeeleavecnt>> leavecnt=new HashMap<String,List<Employeeleavecnt>>();
+		leavecnt.put("leave", employeeleavecntList);*/
+	
+		try{
+		
+		Employee employee=new Employee("kundan1234",false,"msg",department,addressList,false);		
+		employeeRepository.save(employee);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	
 		return "update";
 	}
 
 	@RequestMapping("/delete")
 	public String delete() {
-		//dbConnectionService.delete();
+		int phone=78585235;
+		List<Address> addressList=new ArrayList<Address>();
+		Address address = new Address("om nagar",phone);
+		addressList.add(address);
+		Department department=new Department("ItdfgDept");
+		
+	
+	
+		/*List<Employeeleavecnt> employeeleavecntList = new ArrayList<Employeeleavecnt>();
+		Employeeleavecnt employeeleavecnt = new Employeeleavecnt();
+		employeeleavecnt.setCnt(10);
+		employeeleavecntList.add(employeeleavecnt);
+		Map<String,List<Employeeleavecnt>> leavecnt=new HashMap<String,List<Employeeleavecnt>>();
+		leavecnt.put("leave", employeeleavecntList);*/
+	
+		try{
+		
+		Employee employee=new Employee("kundan1234",false,"msg",department,addressList,false);		
+		//employeeRepository.save(employee);
+		employeeRepository.delete(employee);
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return "delete";
 	}
 }
