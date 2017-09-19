@@ -1,11 +1,6 @@
 package com.bigdata.model;
 
-import org.springframework.data.cassandra.mapping.CassandraType;
-import org.springframework.data.cassandra.mapping.UserDefinedType;
-
-import com.datastax.driver.core.DataType;
-
-@UserDefinedType("address")
+//@UserDefinedType("address")
 public class Address{
 	
 	public Address(String street, Integer phone) {
@@ -14,10 +9,14 @@ public class Address{
 		this.phone = phone;
 	}
 	//private static final long serialVersionUID = 1L;
-	@CassandraType(type = DataType.Name.TEXT) 
+	//@CassandraType(type = DataType.Name.TEXT) 
 	private String street;
-	@CassandraType(type = DataType.Name.INT) 
+	//@CassandraType(type = DataType.Name.INT) 
 	private Integer phone;
+	public Address() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public String getStreet() {
 		return street;
 	}

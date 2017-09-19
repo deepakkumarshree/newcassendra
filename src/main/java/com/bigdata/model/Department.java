@@ -1,14 +1,9 @@
 package com.bigdata.model;
 
-import org.springframework.data.cassandra.mapping.CassandraType;
-import org.springframework.data.cassandra.mapping.UserDefinedType;
-
-import com.datastax.driver.core.DataType;
-
-@UserDefinedType("dept")
+//@UserDefinedType("dept")
 public class Department{
 
-	@CassandraType(type = DataType.Name.TEXT) 
+//	@CassandraType(type = DataType.Name.TEXT) 
 	private String name;
 	public String getName() {
 		return name;
